@@ -1,5 +1,6 @@
 /build/
 /pkg/
+/kwin-cursor-wrap/
 /*.pkg.tar.*
 !src/
 !src/**
