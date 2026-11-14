@@ -4,7 +4,8 @@
         "Id": "cursor-wrap",
         "Name": "Cursor Horizontal Wrap",
         "Description": "Wraps the mouse cursor horizontally across outer monitor edges on Wayland",
-        "Version": "1.0.0"
+        "Version": "1.0.0",
+        "EnabledByDefault": true
     },
     "X-Plasma-API": "javascript",
     "X-Plasma-MainScript": "code/main.js"
