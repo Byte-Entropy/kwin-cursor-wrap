@@ -1,0 +1,27 @@
+post_install() {
+    udevadm control --reload-rules
+    udevadm trigger /dev/uinput 2>/dev/null || true
+    systemctl --global enable cursor-warper.service 2>/dev/null || true
+    cat << 'MSG'
+==> kwin-cursor-wrap installed!
+    Ensure your user is in the 'input' group (re-login required if newly added):
+      sudo usermod -aG input $USER
+    To start immediately without logging out:
+      systemctl --user enable --now cursor-warper.service
+      qdbus6 org.kde.KWin /KWin reconfigure
+MSG
+}
+
+post_upgrade() {
+    udevadm control --reload-rules
+    systemctl --global enable cursor-warper.service 2>/dev/null || true
+    echo "==> Restart the user daemon to apply updates: systemctl --user restart cursor-warper.service"
+}
+
+pre_remove() {
+    systemctl --global disable cursor-warper.service 2>/dev/null || true
+}
+
+post_remove() {
+    udevadm control --reload-rules
+}
